@@ -88,7 +88,7 @@ const GeminiChatbot = () => {
           gap: '0.5rem',
         }}
       >
-        🤖 GPT-3.5 AI
+        🤖 GEMINI AI
       </h4>
 
       <div
