@@ -3,9 +3,9 @@ import vid from './assets/yellow-tech-background.mp4';
 
 const dummyData = [
   { name: 'Arka', points: 11 },
-  { name: 'Soham', points: 6 },
-  { name: 'Riya', points: 5 },
-  { name: 'Ankit', points: 1 },
+  { name: 'Rounak', points: 6 },
+  { name: 'Bidwattar', points: 5 },
+  { name: 'Sayan', points: 1 },
 ];
 
 export default function Leaderboard() {
