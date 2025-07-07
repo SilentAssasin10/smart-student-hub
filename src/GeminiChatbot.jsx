@@ -6,6 +6,7 @@ const GeminiChatbot = () => {
   const [messages, setMessages] = useState([]);
 
   const API_KEY = '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'; // ✅ Your Groq API key
+  const endpoint = 'https://your-vercel-project.vercel.app/api/groqProxy';
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -27,7 +28,8 @@ const GeminiChatbot = () => {
         {
           model: 'llama3-8b-8192',
           messages: [
-            { role: 'system', content: 'You are a helpful assistant.' },
+            { role: 'system', content: 'You are Google’s Gemini AI assistant, smart and friendly.' },
+
             ...messages.map((m) => ({
               role: m.role === 'model' ? 'assistant' : 'user',
               content: m.parts[0].text,
