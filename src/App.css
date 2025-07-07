@@ -1,0 +1,126 @@
+body {
+  background-color: #0e0e0e;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  background-color: #1a1a1a;
+  border: 1px solid #00ffe0;
+  box-shadow: 0 0 15px #00ffe0;
+  color: #ffffff;
+}
+
+.card input,
+.card button {
+  background-color: #121212;
+  color: #ffffff;
+  border: 1px solid #555;
+}
+
+.card input:focus,
+.card button:hover {
+  border-color: #00ffe0;
+  box-shadow: 0 0 10px #00ffe0;
+}
+
+/* Navbar.css */
+.custom-navbar {
+  background-color: rgba(9, 9, 9, 0.3); /* transparent black */
+  transition: background-color 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background: linear-gradient(to right, #000000, #2c003e); /* Black-violet gradient */
+  color: white;
+  padding: 2rem;
+  padding-top: 80px; /* Adjust if your navbar height is different */
+  box-sizing: border-box;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.typing-animation {
+  font-size: 2.5rem;
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 4s steps(30, end) infinite, blink 0.8s infinite;
+}
+
+.description {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  width: 80%;
+}
+
+/* Animations */
+@keyframes typing {
+  0% { width: 0; }
+  50% { width: 100%; }
+  100% { width: 0; }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+@keyframes glowCycle {
+  0%   { color: aqua; }
+  50%  { color: #ff00ff; } /* Neon pink */
+  100% { color: aqua; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.glow-text {
+  animation: fadeInUp 1s ease-out forwards, glowCycle 6s ease-in-out infinite;
+}
