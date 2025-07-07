@@ -5,38 +5,60 @@ const GeminiChatbot = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
 
-  
-  const API_KEY = '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'; // Replace with your Groq API Key
-const endpoint = 'https://your-project-id.cloudfunctions.net/groqProxy';
+  const API_KEY = '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'; // ✅ Your Groq API key
 
- const handleSend = async () => {
-  if (!input.trim()) return;
+  const handleSend = async () => {
+    if (!input.trim()) return;
 
-  const userMessage = { role: 'user', text: input };
-  setMessages(prev => [...prev, userMessage]);
-  setInput('');
+    // Clear chat if 'clear' is typed
+    if (input.trim().toLowerCase() === 'clear') {
+      setMessages([]);
+      setInput('');
+      return;
+    }
 
-  try {
-    const res = await fetch('/api/groq', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ prompt: input }),
-    });
+    const userMessage = { role: 'user', parts: [{ text: input }] };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput('');
 
-    const data = await res.json();
-    const aiMessage = { role: 'model', text: data.reply };
-    setMessages(prev => [...prev, aiMessage]);
-  } catch (error) {
-    console.error(error);
-    setMessages(prev => [...prev, {
-      role: 'model',
-      text: '⚠️ Failed to get response from server.',
-    }]);
-  }
-};
+    try {
+      const res = await axios.post(
+        'https://api.groq.com/openai/v1/chat/completions',
+        {
+          model: 'llama3-8b-8192',
+          messages: [
+            { role: 'system', content: 'You are a helpful assistant.' },
+            ...messages.map((m) => ({
+              role: m.role === 'model' ? 'assistant' : 'user',
+              content: m.parts[0].text,
+            })),
+            { role: 'user', content: input },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${API_KEY}`, // ✅ FIXED
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
+      console.log('Groq API response:', res.data); // ✅ Helpful for debugging
+
+      const reply = res.data.choices?.[0]?.message?.content ?? '⚠️ No response';
+      const aiMessage = { role: 'model', parts: [{ text: reply }] };
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch (err) {
+      console.error('Groq API Error:', err);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'model',
+          parts: [{ text: '⚠️ Failed to fetch response.' }],
+        },
+      ]);
+    }
+  };
 
   return (
     <div
@@ -80,7 +102,7 @@ const endpoint = 'https://your-project-id.cloudfunctions.net/groqProxy';
       >
         {messages.map((msg, idx) => (
           <div key={idx} style={{ marginBottom: '0.5rem' }}>
-            <strong>{msg.role === 'user' ? 'You' : 'GPT'}:</strong> {msg.content}
+            <strong>{msg.role === 'user' ? 'You' : 'GPT'}:</strong> {msg.parts?.[0]?.text}
           </div>
         ))}
       </div>
