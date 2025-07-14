@@ -65,15 +65,20 @@ const GeminiChatbot = () => {
   return (
     <div
       style={{
-        flex: '1 1 350px',
-        padding: '2rem',
-        borderRadius: '1rem',
-        background: 'linear-gradient(145deg, rgba(0,0,0,0.6), rgba(30,30,30,0.6))',
-        backdropFilter: 'blur(20px)',
-        boxShadow: '0 0 20px rgba(0, 255, 255, 0.4)',
-        color: 'white',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      }}
+  flex: '1 1 350px',
+  minWidth: '280px',
+  maxWidth: '100%',
+  padding: '2rem',
+  borderRadius: '1rem',
+  background: 'linear-gradient(145deg, rgba(0,0,0,0.6), rgba(30,30,30,0.6))',
+  backdropFilter: 'blur(20px)',
+  boxShadow: '0 0 20px rgba(0, 255, 255, 0.4)',
+  color: 'white',
+  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+  width: '100%',
+  boxSizing: 'border-box',
+}}
+
     >
       <h4
         style={{

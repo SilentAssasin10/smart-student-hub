@@ -2,8 +2,11 @@ import React from 'react';
 import Countdown from 'react-countdown';
 import GeminiChatbot from './GeminiChatbot'; // ✅ Import GeminiChatbot
 
+
+
 export default function SecondHero() {
-  const countdownDate = Date.now() + 20 * 24 * 60 * 60 * 1000;
+  const countdownDate = new Date('2025-08-01T18:00:00'); 
+
 
   const renderer = ({ days, hours, minutes, seconds }) => (
     <div style={{
@@ -47,16 +50,20 @@ export default function SecondHero() {
     >
       {/* CP Contest Timer Card */}
       <div
-        style={{
-          flex: '1 1 350px',
-          padding: '2rem',
-          borderRadius: '1rem',
-          background: 'linear-gradient(145deg, rgba(0,0,0,0.6), rgba(30,30,30,0.6))',
-          backdropFilter: 'blur(20px)',
-          boxShadow: '0 0 20px rgba(255, 0, 255, 0.4)',
-          color: 'white',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        }}
+  style={{
+    flex: '1 1 350px',
+    minWidth: '280px',
+    maxWidth: '100%',
+    padding: '2rem',
+    borderRadius: '1rem',
+    background: 'linear-gradient(145deg, rgba(0,0,0,0.6), rgba(30,30,30,0.6))',
+    backdropFilter: 'blur(20px)',
+    boxShadow: '0 0 20px rgba(255, 0, 255, 0.4)',
+    color: 'white',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+    width: '100%',
+    boxSizing: 'border-box',
+  }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.03)';
           e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 0, 255, 0.6)';

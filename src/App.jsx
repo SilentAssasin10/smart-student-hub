@@ -7,6 +7,7 @@ import { auth } from './Firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import Events from './Events';
 import Leaderboard from './LeaderBoard';
+import Learn from './Learn';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -26,6 +27,7 @@ function App() {
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path='/Events' element={<Events/>} />
         <Route path='/LeaderBoard' element={<Leaderboard/>} />
+        <Route path='/Learn' element={<Learn/>} />
       </Routes>
     </>
   );
