@@ -5,7 +5,7 @@ const GeminiChatbot = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
 
-  const API_KEY = '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'; // ✅ Your Groq API key
+  const API_KEY = 'YOUR_API_KEY'; // ✅ Your Groq API key
   const endpoint = 'https://your-vercel-project.vercel.app/api/groqProxy';
 
   const handleSend = async () => {
